@@ -1,0 +1,20 @@
+[template]
+cargo_generate_version = ">=0.10.0"
+
+[placeholders]
+audit = { type = "string", prompt = "Enable auditing?", choices = ["no", "yes"], default = "yes" }
+book = { type = "string", prompt = "Prepare mdBook?", choices = ["no", "yes"], default = "yes" }
+github_username = { type = "string", prompt = "GitHub username?" }
+license = { type = "string", prompt = "What license to use?", choices = ["Apache", "MIT", "MPL2", "Unlicense"], default = "MIT" }
+
+[conditional.'book == "no"']
+ignore = [".github/workflows/book.yml", "book.toml", "docs"]
+
+[conditional.'audit == "no"']
+ignore = [".github/dependabot.yml", ".github/workflows/audit.yml"]
+
+[conditional.'crate_type == "bin"']
+ignore = ["{{project-name}}/src/lib.rs"]
+
+[conditional.'crate_type == "lib"']
+ignore = ["{{project-name}}/src/main.rs"]

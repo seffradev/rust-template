@@ -1,6 +1,4 @@
-[package]
-name = "library-template"
-version = "0.1.0"
-edition = "2021"
-
-[dependencies]
+[workspace]
+members = ["{{project-name}}"]
+package.authors = ["{{authors}}"]
+resolver = "2"
